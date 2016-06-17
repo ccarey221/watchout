@@ -1,5 +1,27 @@
 /* your beautiful css styling goes here! */
+body, html{
+  height: 100%;
+}
 
+body{
+  background-image: url('http://kingofwallpapers.com/space/space-019.jpg');
+  background-size: 100% 100%;
+}
+
+.highscore{
+  font-size: 30px;
+  color: green;
+}
+
+.current{
+  font-size: 30px;
+  color: white;
+}
+
+.collisions{
+  font-size: 30px;
+  color: red;
+}
 /* Note: an asteroid image is included in this repo.
 Feel free to use it if you like. */
 
