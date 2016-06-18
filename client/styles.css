@@ -27,6 +27,22 @@ body{
 .spaceship {
   background-image: url('http://exchangedownloads.smarttech.com/public/content/86/8653bcde-3464-4e94-a0e0-f317350b624c/previews/medium/0001.png');
 }
+
+.rotate {
+  animation-duration: .1s;
+  animation-name: rotation;
+  animation-iteration-count: infinite;
+  transform: rotate(30deg);
+  transform-origin: center;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 /* Note: an asteroid image is included in this repo.
 Feel free to use it if you like. */
-

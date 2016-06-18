@@ -2,14 +2,15 @@
 var enemies = [];
 var collisions = 0;
 var highScore = 0;
+var score = 0;
 
 var updateScore = function(start) {
-  var score = start;
+  score = start;
   var counterInterval = setInterval(function() {
     d3.select('body').select('.current').text('Current score: ' + score);
     score++;
     if (score > highScore) {
-      highScore = score; 
+      highScore = score;
     }
   }, 200);
 
@@ -47,9 +48,9 @@ var placeAsteroids = function(n) {
 
 
 var moveAsteroids = function() {
-    
+
   for (var i = 0; i < 10; i++) {
-    var yPos = Math.floor(Math.random() * window.innerHeight); 
+    var yPos = Math.floor(Math.random() * window.innerHeight);
     var xPos = Math.floor(Math.random() * window.innerWidth);
 
     d3.select('.asteroid' + i)
@@ -66,18 +67,18 @@ var moveAsteroids = function() {
 
 
 var drag = d3.behavior.drag()
-    .on("dragstart", function() { 
-      draggableCircle.style('fill', 'blue'); 
+    .on("dragstart", function() {
+      draggableCircle.style('fill', 'blue');
     })
-    .on("drag", function() { 
-      draggableCircle.attr('x', d3.event.x).attr('y', d3.event.y); 
+    .on("drag", function() {
+      draggableCircle.attr('x', d3.event.x).attr('y', d3.event.y);
     })
     .on("dragend", function() { draggableCircle.style('fill', 'white'); });
 
 
 var draggableCircle = svg
     .append('rect')
-    .attr('class', 'spaceship')
+    .attr('class', 'spaceship rotate')
     .attr('x', 10)
     .attr('y', 10)
     .attr('width', 25)
@@ -103,25 +104,26 @@ var checkCollision = function() {
   }
 };
 
-var collisionDetection = function() { 
+var collisionDetection = function() {
 
   return function() {
     var spaceship = d3.select('.spaceship');
-    
+
     enemies.forEach(function(enemy) {
       //console.log(enemy[0].cx);
       var otherCircle = enemy[0];
       console.log(spaceship.attr('x'));
-      var dx = spaceship.attr('x') - otherCircle.cx.animVal.value;
-      var dy = spaceship.attr('y') - otherCircle.cy.animVal.value;
+      var dx = +spaceship.attr('x') - +otherCircle.cx.animVal.value;
+      var dy = +spaceship.attr('y') - +otherCircle.cy.animVal.value;
 
       var distance = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
 
       //console.log('dx = ' + dx + 'dy =' + dy);
 
-      if (distance < spaceship.attr('width') + otherCircle.r.animVal.value) {
+      if (distance < +spaceship.attr('width') + +otherCircle.r.animVal.value) {
         collisions++;
-        d3.select('.collisions').text('Collisions: ' + collisions);
+        score = 0;
+        d3.select('.collisions').text('Collisions: ' + Math.floor(collisions/100));
         d3.select('.highscore').text('High Score: ' + highScore);
       }
     });
