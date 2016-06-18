@@ -4,23 +4,28 @@ body, html{
 }
 
 body{
+  padding: 1em;
+  font-family: arial;
+  font-weight: 600;
+  font-size: 1.3em;
   background-image: url('http://kingofwallpapers.com/space/space-019.jpg');
   background-size: 100% 100%;
 }
 
 .highscore{
-  font-size: 30px;
   color: green;
 }
 
 .current{
-  font-size: 30px;
   color: white;
 }
 
 .collisions{
-  font-size: 30px;
   color: red;
+}
+
+.spaceship {
+  background-image: url('http://exchangedownloads.smarttech.com/public/content/86/8653bcde-3464-4e94-a0e0-f317350b624c/previews/medium/0001.png');
 }
 /* Note: an asteroid image is included in this repo.
 Feel free to use it if you like. */
